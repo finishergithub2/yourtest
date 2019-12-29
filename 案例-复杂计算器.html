@@ -19,8 +19,8 @@
       </select>
     </p>
     <p><input type="text" v-model="num2" /></p>
-    <p><button @click="add">=</button></p>
-    <p><span>{{ result }}</span></p>
+    <p><button >=</button></p>
+    <p><span>{{ rst }}</span></p>
     
   </div>
   <script src="./vue.js"></script>
@@ -43,31 +43,10 @@
         result:'',
         opt:'/' // 计算器操作符号 + - * /  可以设置 或 接收 下拉列表选中项目
       },
-      methods:{
-        add(){
-          if(this.num1.trim() && this.num2.trim()){
-            // let n1 = Number(this.num1)
-            // let n2 = Number(this.num2)
-            // let z = ''
-            // if(this.opt==='+'){
-            //   z = n1 + n2
-            // }else if(this.opt==='-'){
-            //   z = n1 - n2
-            // }else if(this.opt==='*'){
-            //   z = n1 * n2
-            // }else if(this.opt==='/'){
-            //   z = n1 / n2
-            // }else {
-            //   z = ''
-            // }
-            // // toFixed(n) 可以限定数值信息小数点右边位数
-            // this.result = z.toFixed(3)
-
-            // 升级处理
-            this.result = eval(`${Number(this.num1)} ${this.opt} ${Number(this.num2)}`).toFixed(3)
-            // debugger //打一个断点，需要浏览器调功工具开启状态
-            // console.log(123456)
-            // 如何使得字符串当做"javascript表达式"运行起来
+      computed:{
+        rst(){
+          if(this.num1.trim() && this.num2.trim() && this.opt){
+            return eval(`${Number(this.num1)} ${this.opt} ${Number(this.num2)}`).toFixed(3)
           }
         }
       }
